@@ -7,7 +7,7 @@ const listingSchema = new Schema({
     required: true,
   },
   description: String,
-  image: {
+  url: {
     type: String,
     default:
       "https://pixabay.com/photos/burj-al-arab-largest-hotel-in-dubai-2624317/",
