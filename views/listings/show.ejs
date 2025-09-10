@@ -2,6 +2,9 @@
 
     <body>
         <h3>Listing Details :</h3>
+        <div>
+            <img class="img-fluid" src="<%= (listing.image && listing.image.url) ? listing.image.url : (typeof listing.image === 'string' ? listing.image : `https://picsum.photos/seed/${listing._id}/1200/800`) %>" alt="listing_image" />
+        </div>
         <ul>
             <li>
                 <%= listing.title%>

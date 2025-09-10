@@ -7,16 +7,25 @@ const listingSchema = new Schema({
     required: true,
   },
   description: String,
-  url: {
-    type: String,
-    default:
-      "https://pixabay.com/photos/burj-al-arab-largest-hotel-in-dubai-2624317/",
-    set: (v) =>
-      v === ""
-        ? "https://pixabay.com/photos/burj-al-arab-largest-hotel-in-dubai-2624317/"
-        : v,
+  image: {
+    filename: {
+      type: String,
+      default: "listingimage",
+    },
+    url: {
+      type: String,
+      default:
+        "https://pixabay.com/photos/burj-al-arab-largest-hotel-in-dubai-2624317/",
+      set: (v) =>
+        v === ""
+          ? "https://pixabay.com/photos/burj-al-arab-largest-hotel-in-dubai-2624317/"
+          : v,
+    },
   },
-  price: Number,
+  price: {
+    type: Number,
+    required: true,
+  },
   location: String,
   country: String,
 });
