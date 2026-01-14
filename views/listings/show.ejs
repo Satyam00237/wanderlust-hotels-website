@@ -1,33 +1,52 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-    <body>
-        <h3>Listing Details :</h3>
-        <div>
-            <img class="img-fluid" src="<%= (listing.image && listing.image.url) ? listing.image.url : (typeof listing.image === 'string' ? listing.image : `https://picsum.photos/seed/${listing._id}/1200/800`) %>" alt="listing_image" />
-        </div>
-        <ul>
-            <li>
-                <%= listing.title%>
-            </li>
-            <li>
-                <%= listing.description%>
-            </li>
-            <li>
-                &#8377; <%= listing.price.toLocaleString("en-IN") %>
-            </li>
-            <li>
-                <%= listing.location%>
-            </li>
-            <li>
-                <%= listing.country%>
-            </li>
-        </ul>
-        <br>
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
 
-        <a href="/listings/<%= listing._id %>/edit">Edit this Listing</a>
-        <br>
-        <br>
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-            <button>Delete this listings</button>
-        </form>
-    </body>
+            <h3 class="mb-4">Listing Details</h3>
+
+            <!-- CARD -->
+            <div class="card mb-4 shadow-sm">
+                <img src="<%= listing.image?.url || `https://picsum.photos/seed/${listing._id}/800/500` %>"
+                    class="card-img-top show-img" alt="listing_image">
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Title:</strong>
+                            <%= listing.title %>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Description:</strong>
+                            <%= listing.description %>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Price:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Location:</strong>
+                            <%= listing.location %>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Country:</strong>
+                            <%= listing.country %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="d-flex gap-2">
+                <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-dark">
+                    Edit
+                </a>
+
+                <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
